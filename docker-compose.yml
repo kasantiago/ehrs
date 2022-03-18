@@ -1,0 +1,73 @@
+version: '3'
+services:
+  
+  #PHP Service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ehrs.com/php
+    container_name: app
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - app-network
+
+  #Nginx Service
+  webserver:
+    image: nginx:alpine
+    container_name: webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8081:80"
+      - "4430:443"
+    volumes:
+      - ./:/var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - app-network
+
+    #MySQL Service
+  db:
+      image: mariadb:10.4
+      ports:
+        - "3307:3306"
+      environment:
+        MYSQL_USERNAME: root
+        MYSQL_ROOT_PASSWORD: losartanexe
+        MYSQL_DATABASE: laravel
+      volumes:
+        - db-data:/var/lib/mysql
+
+  phpmyadmin:
+      image: phpmyadmin/phpmyadmin:latest
+      ports:
+        - 10081:80
+      restart: always
+      environment:
+        PMA_HOST : db
+        MYSQL_USERNAME: root
+        MYSQL_ROOT_PASSWORD: losartanexe
+      depends_on:
+        - db
+      #user: "109:115"
+      links:
+        - db:mysql
+
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge
+#Volumes
+volumes:
+  db-data:
+  dbdata:
+    driver: local

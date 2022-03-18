@@ -1,0 +1,3 @@
+ .btn:not(.btn-link):not(.btn-circle) span {position: relative;top: -2px;margin-left: -10px !important;}
+ .bootstrap-select.btn-group .dropdown-toggle .filter-option {display: inline-block;overflow: hidden;width: 100%; text-align: left;color: darkgrey !important;}
+ a.action-tag {cursor: pointer;margin-right:5px;}
