@@ -1,6 +1,6 @@
 <div class="menu">
     <ul class="list">
-        <li class="header">MAIN NAVIGATION</li>
+        <li class="header">MAIN NAVIGATION </li>
         
         <li class="{{ (Request::segment(1) == 'dashboard' ? 'active' : '' ) }}">
             <a href="{{ url('/dashboard') }}">
@@ -131,8 +131,12 @@
         </li>
  -->
 
-<!-- 
-        <li class="{{ Request::segment(1) == 'leave-management' ? 'active' : '' }}">
+
+
+
+
+
+        {{-- <li class="{{ Request::segment(1) == 'leave-management' ? 'active' : '' }}">
             <a href="javascript:void(0);" class="menu-toggle">
                 @if(App\Http\Models\LeaveApplication::pending_count(Auth::id()) != 0)
                 <span class="" style="background-color: #bf1717;position: absolute; top: 2px; color: #fff; font-size: 10px; line-height: 15px; padding: 0 4px; -webkit-border-radius: 3px; -moz-border-radius: 3px; -ms-border-radius: 3px; border-radius: 3px;">{{ App\Http\Models\LeaveApplication::pending_count(Auth::id()) }}</span>
@@ -148,8 +152,11 @@
                     <a href="{{ url('leave-management/employees') }}">Leave Card</a>
                 </li>
             </ul>
-        </li>
- -->
+        </li> --}}
+
+
+
+
 
         <li class="{{ (Request::segment(1) == 'messages' ? 'active' : '' ) }}">
             <a href="{{ url('/messages/inbox') }}">
@@ -232,7 +239,7 @@
            
 
 
-                <li class="{{ (Request::segment(2) == 'leave-card' || Request::segment(2) == 'leave' || Request::segment(2) == 'leave'  ? 'active' : '' ) }}">
+                {{-- <li class="{{ (Request::segment(2) == 'leave-card' || Request::segment(2) == 'leave' || Request::segment(2) == 'leave'  ? 'active' : '' ) }}">
                     <a href="javascript:void(0);" class="menu-toggle">
                         <span>Employees Leave</span>
                     </a>
@@ -248,7 +255,7 @@
                         </li>
                     
                     </ul>
-                </li>
+                </li> --}}
 
 
                 <li class="{{ (Request::segment(2) == 'audit-trail' ? 'active' : '' ) }}">
@@ -289,11 +296,11 @@
             </a>
         </li>
 
-
+       
 
         @if(Auth::user()->employee_status == 'PERMANENT' || Auth::user()->employee_status == 'CASUAL')
 
-<!--         <li class="{{ (Request::segment(1) == 'leave' ? 'active' : '' ) }}">
+        <li class="{{ (Request::segment(1) == 'leave' ? 'active' : '' ) }}">
             <a href="javascript:void(0);" class="menu-toggle">
                 <i class="material-icons">logout</i>
                 <span>Application For Leave</span>
@@ -315,7 +322,7 @@
 
             </ul>
         </li>
- -->
+
         @endif
 
 

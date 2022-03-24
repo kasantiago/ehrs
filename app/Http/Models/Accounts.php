@@ -263,4 +263,8 @@ class Accounts extends Model
 
      return json_encode($arr);
     }
+
+    public function division_name(){
+      return $this->belongsTo('App\Http\Models\Division','division_id','id');
+    }
 }
